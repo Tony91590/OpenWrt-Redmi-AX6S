@@ -9,7 +9,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############Name##############
-name: Redmi-AX6000-build-lean
+name: Redmi-AX6S-build
 
 on:
   repository_dispatch:
@@ -56,7 +56,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-        
+            
     - name: Download firmware source code
       working-directory: /workdir
       run: |
@@ -137,14 +137,14 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-Redmi-AX6000-lean">> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-Redmi-AX6S">> $GITHUB_OUTPUT
         touch release.txt
         echo "The default IP address is 192.168.31.1" >> release.txt
         echo "📥 Firmware download" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
         
     - name: Publish to release
-      uses: softprops/action-gh-release@v1
+      uses: Timheuer/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
