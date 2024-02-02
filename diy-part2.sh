@@ -10,7 +10,7 @@
 # Description: OpenWrt DIY script part 2 (After Update feeds)
 #
 
-# Custom for REDMI AX6000
+# Custom for REDMI AX6S
 sed -i 's/192.168.1.1/192.168.31.1/g' package/base-files/files/bin/config_generate
 sed -i 's/ntp.aliyun.com/0.openwrt.pool.ntp.org/g' package/base-files/files/bin/config_generate
 sed -i 's/time1.cloud.tencent.com/1.openwrt.pool.ntp.org/g' package/base-files/files/bin/config_generate
